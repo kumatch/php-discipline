@@ -3,21 +3,6 @@ Discipline
 
 A PHP value checker.
 
-Install
------
-
-Add "kumatch/discipline" as a dependency in your project's composer.json file.
-
-
-    {
-      "require": {
-        "kumatch/discipline": "*"
-      }
-    }
-
-And install your dependencies.
-
-    $ composer install
 
 Usage
 -----
