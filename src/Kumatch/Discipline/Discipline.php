@@ -95,10 +95,52 @@ class Discipline
      */
     public function isInteger($strict = true)
     {
-        return $this->int($strict);
+        return $this->isInt($strict);
     }
 
 
+    /**
+     * @param bool $strict
+     * @return $this
+     */
+    public function isFloat($strict = true)
+    {
+        if (is_float($this->value)) {
+            return $this;
+        }
+
+        if ($strict) {
+            return $this->fail();
+        }
+
+        if (!is_scalar($this->value)) {
+            return $this->fail();
+        }
+
+        if (is_bool($this->value)) {
+            return $this->fail();
+        }
+
+        if (is_null($this->value) || $this->value === '') {
+            return $this->fail();
+        }
+
+        if (!preg_match('/^(?:-?(?:[0-9]+))?(?:\.[0-9]*)?(?:[eE][\+\-]?(?:[0-9]+))?$/', $this->value)) {
+            return $this->fail();
+        }
+
+        return $this;
+    }
+
+    /**
+     * alias isFloat()
+     *
+     * @return $this
+     */
+    public function isDecimal()
+    {
+        return $this->isFloat();
+    }
 
 
     /**
@@ -221,41 +263,6 @@ class Discipline
     }
 
 
-    /**
-     * @return $this
-     */
-    public function isFloat()
-    {
-        if (!is_scalar($this->value)) {
-            return $this->fail();
-        }
-
-        if (is_bool($this->value)) {
-            return $this->fail();
-        }
-
-        if (is_null($this->value) || $this->value === '') {
-            return $this->fail();
-        }
-
-        if (!preg_match('/^(?:-?(?:[0-9]+))?(?:\.[0-9]*)?(?:[eE][\+\-]?(?:[0-9]+))?$/', $this->value)) {
-            return $this->fail();
-        }
-
-        return $this;
-    }
-
-    /**
-     * alias isFloat()
-     *
-     * @return $this
-     */
-    public function isDecimal()
-    {
-        return $this->isFloat();
-    }
-
-
 
     /**
      * @return $this
@@ -304,4 +311,257 @@ class Discipline
             return $this;
         }
     }
+
+    /**
+     * @param $equals
+     * @return $this
+     */
+    public function equals($equals)
+    {
+        if (serialize($this->value) === serialize($equals)) {
+            return $this;
+        } else {
+            return $this->fail();
+        }
+    }
+
+    /**
+     * @param $equals
+     * @return $this
+     */
+    public function notEquals($equals)
+    {
+        if (serialize($this->value) !== serialize($equals)) {
+            return $this;
+        } else {
+            return $this->fail();
+        }
+    }
+
+    /**
+     * @param $part
+     * @return $this
+     */
+    public function contains($part)
+    {
+        if (!is_scalar($this->value)) {
+            return $this->fail();
+        }
+
+        if (is_null($this->value)) {
+            return $this->fail();
+        }
+
+        if ($part === "") {
+            return $this;
+        }
+
+        $pos = strpos($this->value, $part);
+
+        if (is_numeric($pos) && $pos >= 0) {
+            return $this;
+        } else {
+            return $this->fail();
+        }
+    }
+
+    /**
+     * @param $part
+     * @return $this
+     */
+    public function notContains($part)
+    {
+        if (!is_scalar($this->value)) {
+            return $this->fail();
+        }
+
+        if (is_null($this->value)) {
+            return $this->fail();
+        }
+
+        if ($part === "") {
+            return $this->fail();
+        }
+
+        $pos = strpos($this->value, $part);
+
+        if (is_numeric($pos) && $pos >= 0) {
+            return $this->fail();
+        } else {
+            return $this;
+        }
+    }
+
+    /**
+     * @param $pattern
+     * @return $this
+     */
+    public function match($pattern)
+    {
+        if (!is_scalar($this->value)) {
+            return $this->fail();
+        }
+
+        if (preg_match($pattern, $this->value)) {
+            return $this;
+        } else {
+            return $this->fail();
+        }
+    }
+
+    /**
+     * @param $pattern
+     * @return $this
+     */
+    public function notMatch($pattern)
+    {
+        if (!is_scalar($this->value)) {
+            return $this->fail();
+        }
+
+        if (preg_match($pattern, $this->value)) {
+            return $this->fail();
+        } else {
+            return $this;
+        }
+    }
+
+    /**
+     * @param int $min
+     * @param int|null $max
+     * @return $this
+     */
+    public function length($min, $max = null)
+    {
+        if (!is_scalar($this->value)) {
+            return $this->fail();
+        }
+
+        $length = strlen($this->value);
+
+        if ($length < $min) {
+            return $this->fail();
+        }
+
+        if (!is_null($max) && ($length > $max)) {
+            return $this->fail();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param $min
+     * @return $this
+     */
+    public function min($min)
+    {
+        if (!is_numeric($this->value)) {
+            return $this->fail();
+        }
+
+        if ($this->value < $min) {
+            return $this->fail();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param $max
+     * @return $this
+     */
+    public function max($max)
+    {
+        if (!is_numeric($this->value)) {
+            return $this->fail();
+        }
+
+        if ($this->value > $max) {
+            return $this->fail();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function isEmail()
+    {
+        if (!is_scalar($this->value)) {
+            return $this->fail();
+        }
+
+        if (filter_var($this->value, FILTER_VALIDATE_EMAIL)) {
+            return $this;
+        } else {
+            return $this->fail();
+        }
+    }
+
+    /**
+     * @return $this
+     */
+    public function isUrl()
+    {
+        if (!is_scalar($this->value)) {
+            return $this->fail();
+        }
+
+        if (filter_var($this->value, FILTER_VALIDATE_URL)) {
+            return $this;
+        } else {
+            return $this->fail();
+        }
+    }
+
+    /**
+     * @return $this
+     */
+    public function isIPv4()
+    {
+        if (!is_scalar($this->value)) {
+            return $this->fail();
+        }
+
+        if (filter_var($this->value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return $this;
+        } else {
+            return $this->fail();
+        }
+    }
+
+    /**
+     * @return $this
+     */
+    public function isIPv6()
+    {
+        if (!is_scalar($this->value)) {
+            return $this->fail();
+        }
+
+        if (filter_var($this->value, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+            return $this;
+        } else {
+            return $this->fail();
+        }
+    }
+
+    /**
+     * @return $this
+     */
+    public function isIP()
+    {
+        if (!is_scalar($this->value)) {
+            return $this->fail();
+        }
+
+        if (filter_var($this->value, FILTER_VALIDATE_IP)) {
+            return $this;
+        } else {
+            return $this->fail();
+        }
+    }
+
 }
