@@ -14,7 +14,7 @@ use Kumatch\Discipline\Discipline
 $value = "A example value.";
 $discipline = new Discipline($value, "invalid value.");
 
-$discipline->notEmpty()->int();
+$discipline->notNull()->int();
 
 if (!$discipline->isPass()) {
     echo $discipline->getMessage();
