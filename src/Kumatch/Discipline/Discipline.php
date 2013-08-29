@@ -12,11 +12,11 @@ class Discipline
     /**
      * @param $value
      * @param string $message
-     * @return Discipline
+     * @return static
      */
     static public function start($value, $message = 'failed')
     {
-        return new self($value, $message);
+        return new static($value, $message);
     }
 
     /**
