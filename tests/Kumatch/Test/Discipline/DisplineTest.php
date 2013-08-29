@@ -35,6 +35,7 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse(Discipline::start('A')->int()->isPass());
         $this->assertFalse(Discipline::start('0xA')->int()->isPass());
+        $this->assertFalse(Discipline::start('日本語')->int()->isPass());
         $this->assertFalse(Discipline::start(true)->int()->isPass());
         $this->assertFalse(Discipline::start(null)->int()->isPass());
         $this->assertFalse(Discipline::start('')->int()->isPass());
@@ -57,6 +58,7 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse(Discipline::start('A')->int(false)->isPass());
         $this->assertFalse(Discipline::start('0xA')->int(false)->isPass());
+        $this->assertFalse(Discipline::start('日本語')->int(false)->isPass());
         $this->assertFalse(Discipline::start(true)->int(false)->isPass());
         $this->assertFalse(Discipline::start(null)->int(false)->isPass());
         $this->assertFalse(Discipline::start('')->int(false)->isPass());
@@ -92,6 +94,7 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse(Discipline::start('ok')->float()->isPass());
         $this->assertFalse(Discipline::start('success123')->float()->isPass());
+        $this->assertFalse(Discipline::start('日本語')->float()->isPass());
         $this->assertFalse(Discipline::start(true)->float()->isPass());
         $this->assertFalse(Discipline::start(null)->float()->isPass());
         $this->assertFalse(Discipline::start('')->float()->isPass());
@@ -125,6 +128,7 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse(Discipline::start('ok')->float(false)->isPass());
         $this->assertFalse(Discipline::start('success123')->float(false)->isPass());
+        $this->assertFalse(Discipline::start('日本語')->float(false)->isPass());
         $this->assertFalse(Discipline::start(true)->float(false)->isPass());
         $this->assertFalse(Discipline::start(null)->float(false)->isPass());
         $this->assertFalse(Discipline::start('')->float(false)->isPass());
@@ -140,6 +144,7 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(Discipline::start('Its OK')->alpha()->isPass());
         $this->assertFalse(Discipline::start('nopass1')->alpha()->isPass());
         $this->assertFalse(Discipline::start('33-4')->alpha()->isPass());
+        $this->assertFalse(Discipline::start('日本語')->alpha()->isPass());
         $this->assertFalse(Discipline::start(42)->alpha()->isPass());
         $this->assertFalse(Discipline::start(true)->alpha()->isPass());
         $this->assertFalse(Discipline::start(null)->alpha()->isPass());
@@ -159,6 +164,7 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse(Discipline::start('Its OK')->alphaNumeric()->isPass());
         $this->assertFalse(Discipline::start('33-4')->alphaNumeric()->isPass());
+        $this->assertFalse(Discipline::start('日本語')->alphaNumeric()->isPass());
         $this->assertFalse(Discipline::start(true)->alphaNumeric()->isPass());
         $this->assertFalse(Discipline::start(null)->alphaNumeric()->isPass());
         $this->assertFalse(Discipline::start('')->alphaNumeric()->isPass());
@@ -315,6 +321,10 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(Discipline::start('42')->equals('42')->isPass());
         $this->assertFalse(Discipline::start('42')->equals(42)->isPass());
 
+        $this->assertTrue(Discipline::start('abcdef')->equals('abcdef')->isPass());
+        $this->assertFalse(Discipline::start('abcdef')->equals('ABCDEF')->isPass());
+        $this->assertTrue(Discipline::start('日本語')->equals('日本語')->isPass());
+
         $obj1 = array(1, 3, 5);
         $obj2 = array('1', '3', '5');
         $obj3 = array(1, 5, 3);
@@ -371,6 +381,10 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(Discipline::start("abcdef")->contains("aa")->isPass());
         $this->assertFalse(Discipline::start("abcdef")->contains("abcdefg")->isPass());
 
+        $this->assertTrue(Discipline::start("日本語が使える")->contains("日本語")->isPass());
+        $this->assertTrue(Discipline::start("日本語が使える")->contains("が")->isPass());
+        $this->assertFalse(Discipline::start("日本語が使える")->contains("か")->isPass());
+
         $this->assertTrue(Discipline::start("abcdef")->contains("")->isPass());
     }
 
@@ -384,6 +398,9 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(Discipline::start("abcdef")->notContains("ab")->isPass());
         $this->assertFalse(Discipline::start("abcdef")->notContains("cd")->isPass());
         $this->assertFalse(Discipline::start("abcdef")->notContains("ef")->isPass());
+
+        $this->assertFalse(Discipline::start("日本語が使える")->notContains("日本語")->isPass());
+        $this->assertTrue(Discipline::start("日本語が使える")->notContains("か")->isPass());
 
         $this->assertFalse(Discipline::start("abcdef")->notContains("")->isPass());
     }
@@ -418,8 +435,12 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(Discipline::start("abcdef")->length(7, 10)->isPass());
         $this->assertFalse(Discipline::start("abcdef")->length(0, 5)->isPass());
 
+        $this->assertTrue(Discipline::start("abcdef")->length(6, 6)->isPass());
         $this->assertTrue(Discipline::start("abcdef")->length(6)->isPass());
         $this->assertFalse(Discipline::start("abcdef")->length(7)->isPass());
+
+        $this->assertTrue(Discipline::start("日本語")->length(3, 3)->isPass());
+        $this->assertFalse(Discipline::start("日本語")->length(4)->isPass());
     }
 
     public function testMin()

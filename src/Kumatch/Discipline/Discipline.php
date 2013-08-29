@@ -457,7 +457,7 @@ class Discipline
             return $this->fail();
         }
 
-        $length = strlen($this->value);
+        $length = mb_strlen($this->value);
 
         if ($length < $min) {
             return $this->fail();
