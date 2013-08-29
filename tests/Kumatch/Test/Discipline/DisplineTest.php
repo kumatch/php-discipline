@@ -23,216 +23,216 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
 
     public function testIsIntStrictMode()
     {
-        $this->assertTrue(Discipline::start(42)->isInt()->isPass());
-        $this->assertTrue(Discipline::start(-42)->isInt()->isPass());
-        $this->assertTrue(Discipline::start(0)->isInt()->isPass());
-        $this->assertTrue(Discipline::start(0xA)->isInt()->isPass());
+        $this->assertTrue(Discipline::start(42)->int()->isPass());
+        $this->assertTrue(Discipline::start(-42)->int()->isPass());
+        $this->assertTrue(Discipline::start(0)->int()->isPass());
+        $this->assertTrue(Discipline::start(0xA)->int()->isPass());
 
-        $this->assertFalse(Discipline::start('42')->isInt()->isPass());
-        $this->assertFalse(Discipline::start('-42')->isInt()->isPass());
-        $this->assertFalse(Discipline::start('0')->isInt()->isPass());
-        $this->assertFalse(Discipline::start((float)42)->isInt()->isPass());
+        $this->assertFalse(Discipline::start('42')->int()->isPass());
+        $this->assertFalse(Discipline::start('-42')->int()->isPass());
+        $this->assertFalse(Discipline::start('0')->int()->isPass());
+        $this->assertFalse(Discipline::start((float)42)->int()->isPass());
 
-        $this->assertFalse(Discipline::start('A')->isInt()->isPass());
-        $this->assertFalse(Discipline::start('0xA')->isInt()->isPass());
-        $this->assertFalse(Discipline::start(true)->isInt()->isPass());
-        $this->assertFalse(Discipline::start(null)->isInt()->isPass());
-        $this->assertFalse(Discipline::start('')->isInt()->isPass());
-        $this->assertFalse(Discipline::start(array(1))->isInt()->isPass());
-        $this->assertFalse(Discipline::start(4.2)->isInt()->isPass());
-        $this->assertFalse(Discipline::start(-4.2)->isInt()->isPass());
+        $this->assertFalse(Discipline::start('A')->int()->isPass());
+        $this->assertFalse(Discipline::start('0xA')->int()->isPass());
+        $this->assertFalse(Discipline::start(true)->int()->isPass());
+        $this->assertFalse(Discipline::start(null)->int()->isPass());
+        $this->assertFalse(Discipline::start('')->int()->isPass());
+        $this->assertFalse(Discipline::start(array(1))->int()->isPass());
+        $this->assertFalse(Discipline::start(4.2)->int()->isPass());
+        $this->assertFalse(Discipline::start(-4.2)->int()->isPass());
     }
 
     public function testIsIntNotStrictMode()
     {
-        $this->assertTrue(Discipline::start(42)->isInt(false)->isPass());
-        $this->assertTrue(Discipline::start(-42)->isInt(false)->isPass());
-        $this->assertTrue(Discipline::start(0)->isInt(false)->isPass());
-        $this->assertTrue(Discipline::start(0xA)->isInt(false)->isPass());
+        $this->assertTrue(Discipline::start(42)->int(false)->isPass());
+        $this->assertTrue(Discipline::start(-42)->int(false)->isPass());
+        $this->assertTrue(Discipline::start(0)->int(false)->isPass());
+        $this->assertTrue(Discipline::start(0xA)->int(false)->isPass());
 
-        $this->assertTrue(Discipline::start('42')->isInt(false)->isPass());
-        $this->assertTrue(Discipline::start('-42')->isInt(false)->isPass());
-        $this->assertTrue(Discipline::start('0')->isInt(false)->isPass());
-        $this->assertTrue(Discipline::start((float)42)->isInt(false)->isPass());
+        $this->assertTrue(Discipline::start('42')->int(false)->isPass());
+        $this->assertTrue(Discipline::start('-42')->int(false)->isPass());
+        $this->assertTrue(Discipline::start('0')->int(false)->isPass());
+        $this->assertTrue(Discipline::start((float)42)->int(false)->isPass());
 
-        $this->assertFalse(Discipline::start('A')->isInt(false)->isPass());
-        $this->assertFalse(Discipline::start('0xA')->isInt(false)->isPass());
-        $this->assertFalse(Discipline::start(true)->isInt(false)->isPass());
-        $this->assertFalse(Discipline::start(null)->isInt(false)->isPass());
-        $this->assertFalse(Discipline::start('')->isInt(false)->isPass());
-        $this->assertFalse(Discipline::start(array(1))->isInt(false)->isPass());
-        $this->assertFalse(Discipline::start(4.2)->isInt(false)->isPass());
-        $this->assertFalse(Discipline::start(-4.2)->isInt(false)->isPass());
+        $this->assertFalse(Discipline::start('A')->int(false)->isPass());
+        $this->assertFalse(Discipline::start('0xA')->int(false)->isPass());
+        $this->assertFalse(Discipline::start(true)->int(false)->isPass());
+        $this->assertFalse(Discipline::start(null)->int(false)->isPass());
+        $this->assertFalse(Discipline::start('')->int(false)->isPass());
+        $this->assertFalse(Discipline::start(array(1))->int(false)->isPass());
+        $this->assertFalse(Discipline::start(4.2)->int(false)->isPass());
+        $this->assertFalse(Discipline::start(-4.2)->int(false)->isPass());
     }
 
     public function testIsFloatStrictMode()
     {
-        $this->assertTrue(Discipline::start(42.123)->isFloat()->isPass());
-        $this->assertTrue(Discipline::start(-42.123)->isFloat()->isPass());
-        $this->assertTrue(Discipline::start(0.42)->isFloat()->isPass());
-        $this->assertTrue(Discipline::start(-0.42)->isFloat()->isPass());
-        $this->assertTrue(Discipline::start((float)42)->isFloat()->isPass());
-        $this->assertTrue(Discipline::start((float)-42)->isFloat()->isPass());
-        $this->assertTrue(Discipline::start((float)0)->isFloat()->isPass());
-        $this->assertTrue(Discipline::start(123456789012345678901234567890)->isFloat()->isPass());
+        $this->assertTrue(Discipline::start(42.123)->float()->isPass());
+        $this->assertTrue(Discipline::start(-42.123)->float()->isPass());
+        $this->assertTrue(Discipline::start(0.42)->float()->isPass());
+        $this->assertTrue(Discipline::start(-0.42)->float()->isPass());
+        $this->assertTrue(Discipline::start((float)42)->float()->isPass());
+        $this->assertTrue(Discipline::start((float)-42)->float()->isPass());
+        $this->assertTrue(Discipline::start((float)0)->float()->isPass());
+        $this->assertTrue(Discipline::start(123456789012345678901234567890)->float()->isPass());
 
-        $this->assertFalse(Discipline::start(42)->isFloat()->isPass());
-        $this->assertFalse(Discipline::start(-42)->isFloat()->isPass());
-        $this->assertFalse(Discipline::start(0)->isFloat()->isPass());
+        $this->assertFalse(Discipline::start(42)->float()->isPass());
+        $this->assertFalse(Discipline::start(-42)->float()->isPass());
+        $this->assertFalse(Discipline::start(0)->float()->isPass());
 
-        $this->assertFalse(Discipline::start('42')->isFloat()->isPass());
-        $this->assertFalse(Discipline::start('42.123')->isFloat()->isPass());
-        $this->assertFalse(Discipline::start('0.42')->isFloat()->isPass());
-        $this->assertFalse(Discipline::start('-42')->isFloat()->isPass());
-        $this->assertFalse(Discipline::start('-42.123')->isFloat()->isPass());
-        $this->assertFalse(Discipline::start('-0.42')->isFloat()->isPass());
-        $this->assertFalse(Discipline::start('4.2e+19')->isFloat()->isPass());
-        $this->assertFalse(Discipline::start('0.42e-19')->isFloat()->isPass());
-        $this->assertFalse(Discipline::start('-0.42E-19')->isFloat()->isPass());
+        $this->assertFalse(Discipline::start('42')->float()->isPass());
+        $this->assertFalse(Discipline::start('42.123')->float()->isPass());
+        $this->assertFalse(Discipline::start('0.42')->float()->isPass());
+        $this->assertFalse(Discipline::start('-42')->float()->isPass());
+        $this->assertFalse(Discipline::start('-42.123')->float()->isPass());
+        $this->assertFalse(Discipline::start('-0.42')->float()->isPass());
+        $this->assertFalse(Discipline::start('4.2e+19')->float()->isPass());
+        $this->assertFalse(Discipline::start('0.42e-19')->float()->isPass());
+        $this->assertFalse(Discipline::start('-0.42E-19')->float()->isPass());
 
-        $this->assertFalse(Discipline::start('ok')->isFloat()->isPass());
-        $this->assertFalse(Discipline::start('success123')->isFloat()->isPass());
-        $this->assertFalse(Discipline::start(true)->isFloat()->isPass());
-        $this->assertFalse(Discipline::start(null)->isFloat()->isPass());
-        $this->assertFalse(Discipline::start('')->isFloat()->isPass());
-        $this->assertFalse(Discipline::start(array('NG'))->isFloat()->isPass());
+        $this->assertFalse(Discipline::start('ok')->float()->isPass());
+        $this->assertFalse(Discipline::start('success123')->float()->isPass());
+        $this->assertFalse(Discipline::start(true)->float()->isPass());
+        $this->assertFalse(Discipline::start(null)->float()->isPass());
+        $this->assertFalse(Discipline::start('')->float()->isPass());
+        $this->assertFalse(Discipline::start(array('NG'))->float()->isPass());
     }
 
     public function testIsFloatNotStrictMode()
     {
-        $this->assertTrue(Discipline::start(42.123)->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start(-42.123)->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start(0.42)->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start(-0.42)->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start((float)42)->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start((float)-42)->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start((float)0)->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start(123456789012345678901234567890)->isFloat(false)->isPass());
+        $this->assertTrue(Discipline::start(42.123)->float(false)->isPass());
+        $this->assertTrue(Discipline::start(-42.123)->float(false)->isPass());
+        $this->assertTrue(Discipline::start(0.42)->float(false)->isPass());
+        $this->assertTrue(Discipline::start(-0.42)->float(false)->isPass());
+        $this->assertTrue(Discipline::start((float)42)->float(false)->isPass());
+        $this->assertTrue(Discipline::start((float)-42)->float(false)->isPass());
+        $this->assertTrue(Discipline::start((float)0)->float(false)->isPass());
+        $this->assertTrue(Discipline::start(123456789012345678901234567890)->float(false)->isPass());
 
-        $this->assertTrue(Discipline::start(42)->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start(-42)->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start(0)->isFloat(false)->isPass());
+        $this->assertTrue(Discipline::start(42)->float(false)->isPass());
+        $this->assertTrue(Discipline::start(-42)->float(false)->isPass());
+        $this->assertTrue(Discipline::start(0)->float(false)->isPass());
 
-        $this->assertTrue(Discipline::start('42')->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start('42.123')->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start('0.42')->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start('-42')->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start('-42.123')->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start('-0.42')->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start('4.2e+19')->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start('0.42e-19')->isFloat(false)->isPass());
-        $this->assertTrue(Discipline::start('-0.42E-19')->isFloat(false)->isPass());
+        $this->assertTrue(Discipline::start('42')->float(false)->isPass());
+        $this->assertTrue(Discipline::start('42.123')->float(false)->isPass());
+        $this->assertTrue(Discipline::start('0.42')->float(false)->isPass());
+        $this->assertTrue(Discipline::start('-42')->float(false)->isPass());
+        $this->assertTrue(Discipline::start('-42.123')->float(false)->isPass());
+        $this->assertTrue(Discipline::start('-0.42')->float(false)->isPass());
+        $this->assertTrue(Discipline::start('4.2e+19')->float(false)->isPass());
+        $this->assertTrue(Discipline::start('0.42e-19')->float(false)->isPass());
+        $this->assertTrue(Discipline::start('-0.42E-19')->float(false)->isPass());
 
-        $this->assertFalse(Discipline::start('ok')->isFloat(false)->isPass());
-        $this->assertFalse(Discipline::start('success123')->isFloat(false)->isPass());
-        $this->assertFalse(Discipline::start(true)->isFloat(false)->isPass());
-        $this->assertFalse(Discipline::start(null)->isFloat(false)->isPass());
-        $this->assertFalse(Discipline::start('')->isFloat(false)->isPass());
-        $this->assertFalse(Discipline::start(array('NG'))->isFloat(false)->isPass());
+        $this->assertFalse(Discipline::start('ok')->float(false)->isPass());
+        $this->assertFalse(Discipline::start('success123')->float(false)->isPass());
+        $this->assertFalse(Discipline::start(true)->float(false)->isPass());
+        $this->assertFalse(Discipline::start(null)->float(false)->isPass());
+        $this->assertFalse(Discipline::start('')->float(false)->isPass());
+        $this->assertFalse(Discipline::start(array('NG'))->float(false)->isPass());
     }
 
-    public function testIsAlpha()
+    public function testAlpha()
     {
-        $this->assertTrue(Discipline::start('OK')->isAlpha()->isPass());
-        $this->assertTrue(Discipline::start('pass')->isAlpha()->isPass());
-        $this->assertTrue(Discipline::start('Fail')->isAlpha()->isPass());
+        $this->assertTrue(Discipline::start('OK')->alpha()->isPass());
+        $this->assertTrue(Discipline::start('pass')->alpha()->isPass());
+        $this->assertTrue(Discipline::start('Fail')->alpha()->isPass());
 
-        $this->assertFalse(Discipline::start('Its OK')->isAlpha()->isPass());
-        $this->assertFalse(Discipline::start('nopass1')->isAlpha()->isPass());
-        $this->assertFalse(Discipline::start('33-4')->isAlpha()->isPass());
-        $this->assertFalse(Discipline::start(42)->isAlpha()->isPass());
-        $this->assertFalse(Discipline::start(true)->isAlpha()->isPass());
-        $this->assertFalse(Discipline::start(null)->isAlpha()->isPass());
-        $this->assertFalse(Discipline::start('')->isAlpha()->isPass());
-        $this->assertFalse(Discipline::start(array('NG'))->isAlpha()->isPass());
-    }
-
-
-    public function testIsAlphaNumeric()
-    {
-        $this->assertTrue(Discipline::start('OK')->isAlphaNumeric()->isPass());
-        $this->assertTrue(Discipline::start('pass')->isAlphaNumeric()->isPass());
-        $this->assertTrue(Discipline::start('Fail')->isAlphaNumeric()->isPass());
-        $this->assertTrue(Discipline::start('123')->isAlphaNumeric()->isPass());
-        $this->assertTrue(Discipline::start(42)->isAlphaNumeric()->isPass());
-        $this->assertTrue(Discipline::start('success123')->isAlphaNumeric()->isPass());
-
-        $this->assertFalse(Discipline::start('Its OK')->isAlphaNumeric()->isPass());
-        $this->assertFalse(Discipline::start('33-4')->isAlphaNumeric()->isPass());
-        $this->assertFalse(Discipline::start(true)->isAlphaNumeric()->isPass());
-        $this->assertFalse(Discipline::start(null)->isAlphaNumeric()->isPass());
-        $this->assertFalse(Discipline::start('')->isAlphaNumeric()->isPass());
-        $this->assertFalse(Discipline::start(array('NG'))->isAlphaNumeric()->isPass());
-    }
-
-    public function testIsNumeric()
-    {
-        $this->assertTrue(Discipline::start('123')->isNumeric()->isPass());
-        $this->assertTrue(Discipline::start(42)->isNumeric()->isPass());
-        $this->assertTrue(Discipline::start('-123')->isNumeric()->isPass());
-        $this->assertTrue(Discipline::start(-42)->isNumeric()->isPass());
-
-        $this->assertFalse(Discipline::start('OK')->isNumeric()->isPass());
-        $this->assertFalse(Discipline::start('pass')->isNumeric()->isPass());
-        $this->assertFalse(Discipline::start('Fail')->isNumeric()->isPass());
-        $this->assertFalse(Discipline::start('success123')->isNumeric()->isPass());
-
-        $this->assertFalse(Discipline::start('Its OK')->isNumeric()->isPass());
-        $this->assertFalse(Discipline::start('33-4')->isNumeric()->isPass());
-        $this->assertFalse(Discipline::start(true)->isNumeric()->isPass());
-        $this->assertFalse(Discipline::start(null)->isNumeric()->isPass());
-        $this->assertFalse(Discipline::start('')->isNumeric()->isPass());
-        $this->assertFalse(Discipline::start(array('NG'))->isNumeric()->isPass());
-    }
-
-    public function testIsLowerCase()
-    {
-        $this->assertTrue(Discipline::start('123')->isLowerCase()->isPass());
-        $this->assertTrue(Discipline::start(42)->isLowerCase()->isPass());
-        $this->assertTrue(Discipline::start('-123')->isLowerCase()->isPass());
-        $this->assertTrue(Discipline::start(-42)->isLowerCase()->isPass());
-        $this->assertTrue(Discipline::start('ok')->isLowerCase()->isPass());
-        $this->assertTrue(Discipline::start('success123')->isLowerCase()->isPass());
-        $this->assertTrue(Discipline::start('mr.x')->isLowerCase()->isPass());
-
-        $this->assertFalse(Discipline::start('Fail')->isLowerCase()->isPass());
-        $this->assertFalse(Discipline::start('OK!')->isLowerCase()->isPass());
-        $this->assertFalse(Discipline::start(true)->isLowerCase()->isPass());
-        $this->assertFalse(Discipline::start(null)->isLowerCase()->isPass());
-        $this->assertFalse(Discipline::start('')->isLowerCase()->isPass());
-        $this->assertFalse(Discipline::start(array('NG'))->isLowerCase()->isPass());
-    }
-
-    public function testIsUpperCase()
-    {
-        $this->assertTrue(Discipline::start('SUCCESS')->isUpperCase()->isPass());
-        $this->assertTrue(Discipline::start('OK!')->isUpperCase()->isPass());
-        $this->assertTrue(Discipline::start('123')->isUpperCase()->isPass());
-        $this->assertTrue(Discipline::start(42)->isUpperCase()->isPass());
-        $this->assertTrue(Discipline::start('-123')->isUpperCase()->isPass());
-        $this->assertTrue(Discipline::start(-42)->isUpperCase()->isPass());
-
-        $this->assertFalse(Discipline::start('ok')->isUpperCase()->isPass());
-        $this->assertFalse(Discipline::start('success123')->isUpperCase()->isPass());
-        $this->assertFalse(Discipline::start('Fail')->isUpperCase()->isPass());
-        $this->assertFalse(Discipline::start('mr.x')->isUpperCase()->isPass());
-        $this->assertFalse(Discipline::start(true)->isUpperCase()->isPass());
-        $this->assertFalse(Discipline::start(null)->isUpperCase()->isPass());
-        $this->assertFalse(Discipline::start('')->isUpperCase()->isPass());
-        $this->assertFalse(Discipline::start(array('NG'))->isUpperCase()->isPass());
+        $this->assertFalse(Discipline::start('Its OK')->alpha()->isPass());
+        $this->assertFalse(Discipline::start('nopass1')->alpha()->isPass());
+        $this->assertFalse(Discipline::start('33-4')->alpha()->isPass());
+        $this->assertFalse(Discipline::start(42)->alpha()->isPass());
+        $this->assertFalse(Discipline::start(true)->alpha()->isPass());
+        $this->assertFalse(Discipline::start(null)->alpha()->isPass());
+        $this->assertFalse(Discipline::start('')->alpha()->isPass());
+        $this->assertFalse(Discipline::start(array('NG'))->alpha()->isPass());
     }
 
 
-    public function testIsNull()
+    public function testAlphaNumeric()
     {
-        $this->assertTrue(Discipline::start(null)->isNull()->isPass());
+        $this->assertTrue(Discipline::start('OK')->alphaNumeric()->isPass());
+        $this->assertTrue(Discipline::start('pass')->alphaNumeric()->isPass());
+        $this->assertTrue(Discipline::start('Fail')->alphaNumeric()->isPass());
+        $this->assertTrue(Discipline::start('123')->alphaNumeric()->isPass());
+        $this->assertTrue(Discipline::start(42)->alphaNumeric()->isPass());
+        $this->assertTrue(Discipline::start('success123')->alphaNumeric()->isPass());
 
-        $this->assertFalse(Discipline::start('ok')->isNull()->isPass());
-        $this->assertFalse(Discipline::start(42)->isNull()->isPass());
-        $this->assertFalse(Discipline::start(0)->isNull()->isPass());
-        $this->assertFalse(Discipline::start(false)->isNull()->isPass());
-        $this->assertFalse(Discipline::start('')->isNull()->isPass());
-        $this->assertFalse(Discipline::start(array('NG'))->isNull()->isPass());
+        $this->assertFalse(Discipline::start('Its OK')->alphaNumeric()->isPass());
+        $this->assertFalse(Discipline::start('33-4')->alphaNumeric()->isPass());
+        $this->assertFalse(Discipline::start(true)->alphaNumeric()->isPass());
+        $this->assertFalse(Discipline::start(null)->alphaNumeric()->isPass());
+        $this->assertFalse(Discipline::start('')->alphaNumeric()->isPass());
+        $this->assertFalse(Discipline::start(array('NG'))->alphaNumeric()->isPass());
+    }
+
+    public function testNumeric()
+    {
+        $this->assertTrue(Discipline::start('123')->numeric()->isPass());
+        $this->assertTrue(Discipline::start(42)->numeric()->isPass());
+        $this->assertTrue(Discipline::start('-123')->numeric()->isPass());
+        $this->assertTrue(Discipline::start(-42)->numeric()->isPass());
+
+        $this->assertFalse(Discipline::start('OK')->numeric()->isPass());
+        $this->assertFalse(Discipline::start('pass')->numeric()->isPass());
+        $this->assertFalse(Discipline::start('Fail')->numeric()->isPass());
+        $this->assertFalse(Discipline::start('success123')->numeric()->isPass());
+
+        $this->assertFalse(Discipline::start('Its OK')->numeric()->isPass());
+        $this->assertFalse(Discipline::start('33-4')->numeric()->isPass());
+        $this->assertFalse(Discipline::start(true)->numeric()->isPass());
+        $this->assertFalse(Discipline::start(null)->numeric()->isPass());
+        $this->assertFalse(Discipline::start('')->numeric()->isPass());
+        $this->assertFalse(Discipline::start(array('NG'))->numeric()->isPass());
+    }
+
+    public function testLowerCase()
+    {
+        $this->assertTrue(Discipline::start('123')->lowerCase()->isPass());
+        $this->assertTrue(Discipline::start(42)->lowerCase()->isPass());
+        $this->assertTrue(Discipline::start('-123')->lowerCase()->isPass());
+        $this->assertTrue(Discipline::start(-42)->lowerCase()->isPass());
+        $this->assertTrue(Discipline::start('ok')->lowerCase()->isPass());
+        $this->assertTrue(Discipline::start('success123')->lowerCase()->isPass());
+        $this->assertTrue(Discipline::start('mr.x')->lowerCase()->isPass());
+
+        $this->assertFalse(Discipline::start('Fail')->lowerCase()->isPass());
+        $this->assertFalse(Discipline::start('OK!')->lowerCase()->isPass());
+        $this->assertFalse(Discipline::start(true)->lowerCase()->isPass());
+        $this->assertFalse(Discipline::start(null)->lowerCase()->isPass());
+        $this->assertFalse(Discipline::start('')->lowerCase()->isPass());
+        $this->assertFalse(Discipline::start(array('NG'))->lowerCase()->isPass());
+    }
+
+    public function testUpperCase()
+    {
+        $this->assertTrue(Discipline::start('SUCCESS')->upperCase()->isPass());
+        $this->assertTrue(Discipline::start('OK!')->upperCase()->isPass());
+        $this->assertTrue(Discipline::start('123')->upperCase()->isPass());
+        $this->assertTrue(Discipline::start(42)->upperCase()->isPass());
+        $this->assertTrue(Discipline::start('-123')->upperCase()->isPass());
+        $this->assertTrue(Discipline::start(-42)->upperCase()->isPass());
+
+        $this->assertFalse(Discipline::start('ok')->upperCase()->isPass());
+        $this->assertFalse(Discipline::start('success123')->upperCase()->isPass());
+        $this->assertFalse(Discipline::start('Fail')->upperCase()->isPass());
+        $this->assertFalse(Discipline::start('mr.x')->upperCase()->isPass());
+        $this->assertFalse(Discipline::start(true)->upperCase()->isPass());
+        $this->assertFalse(Discipline::start(null)->upperCase()->isPass());
+        $this->assertFalse(Discipline::start('')->upperCase()->isPass());
+        $this->assertFalse(Discipline::start(array('NG'))->upperCase()->isPass());
+    }
+
+
+    public function testNull()
+    {
+        $this->assertTrue(Discipline::start(null)->null()->isPass());
+
+        $this->assertFalse(Discipline::start('ok')->null()->isPass());
+        $this->assertFalse(Discipline::start(42)->null()->isPass());
+        $this->assertFalse(Discipline::start(0)->null()->isPass());
+        $this->assertFalse(Discipline::start(false)->null()->isPass());
+        $this->assertFalse(Discipline::start('')->null()->isPass());
+        $this->assertFalse(Discipline::start(array('NG'))->null()->isPass());
     }
 
     public function testNotNull()
@@ -247,29 +247,28 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(Discipline::start(null)->notNull()->isPass());
     }
 
-
-    public function testIsEmpty()
+    public function testBlank()
     {
-        $this->assertTrue(Discipline::start(null)->isEmpty()->isPass());
-        $this->assertTrue(Discipline::start('')->isEmpty()->isPass());
+        $this->assertTrue(Discipline::start('')->blank()->isPass());
 
-        $this->assertFalse(Discipline::start('ok')->isEmpty()->isPass());
-        $this->assertFalse(Discipline::start(42)->isEmpty()->isPass());
-        $this->assertFalse(Discipline::start(0)->isEmpty()->isPass());
-        $this->assertFalse(Discipline::start(false)->isEmpty()->isPass());
-        $this->assertFalse(Discipline::start(array('NG'))->isEmpty()->isPass());
+        $this->assertFalse(Discipline::start('ok')->blank()->isPass());
+        $this->assertFalse(Discipline::start(42)->blank()->isPass());
+        $this->assertFalse(Discipline::start(0)->blank()->isPass());
+        $this->assertFalse(Discipline::start(false)->blank()->isPass());
+        $this->assertFalse(Discipline::start(null)->blank()->isPass());
+        $this->assertFalse(Discipline::start(array('NG'))->blank()->isPass());
     }
 
-    public function testNotEmpty()
+    public function testNotBlank()
     {
-        $this->assertTrue(Discipline::start('ok')->notEmpty()->isPass());
-        $this->assertTrue(Discipline::start(42)->notEmpty()->isPass());
-        $this->assertTrue(Discipline::start(0)->notEmpty()->isPass());
-        $this->assertTrue(Discipline::start(false)->notEmpty()->isPass());
-        $this->assertTrue(Discipline::start(array('NG'))->notEmpty()->isPass());
+        $this->assertTrue(Discipline::start('ok')->notBlank()->isPass());
+        $this->assertTrue(Discipline::start(42)->notBlank()->isPass());
+        $this->assertTrue(Discipline::start(0)->notBlank()->isPass());
+        $this->assertTrue(Discipline::start(false)->notBlank()->isPass());
+        $this->assertTrue(Discipline::start(null)->notBlank()->isPass());
+        $this->assertTrue(Discipline::start(array('NG'))->notBlank()->isPass());
 
-        $this->assertFalse(Discipline::start(null)->notEmpty()->isPass());
-        $this->assertFalse(Discipline::start('')->notEmpty()->isPass());
+        $this->assertFalse(Discipline::start('')->notBlank()->isPass());
     }
 
     public function testEquals()
@@ -449,106 +448,106 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(Discipline::start(true)->max(0)->isPass());
     }
 
-    public function testIsEmail()
+    public function testEmail()
     {
-        $this->assertTrue(Discipline::start("foo@example.com")->isEmail()->isPass());
-        $this->assertTrue(Discipline::start("foo.bar@mail.example.com")->isEmail()->isPass());
-        $this->assertTrue(Discipline::start("foo+bar@mail.example.com")->isEmail()->isPass());
+        $this->assertTrue(Discipline::start("foo@example.com")->email()->isPass());
+        $this->assertTrue(Discipline::start("foo.bar@mail.example.com")->email()->isPass());
+        $this->assertTrue(Discipline::start("foo+bar@mail.example.com")->email()->isPass());
 
-        $this->assertFalse(Discipline::start("mail.example.com")->isEmail()->isPass());
-        $this->assertFalse(Discipline::start("foo@")->isEmail()->isPass());
-        $this->assertFalse(Discipline::start("foo@example")->isEmail()->isPass());
+        $this->assertFalse(Discipline::start("mail.example.com")->email()->isPass());
+        $this->assertFalse(Discipline::start("foo@")->email()->isPass());
+        $this->assertFalse(Discipline::start("foo@example")->email()->isPass());
 
-        $this->assertFalse(Discipline::start("foo..bar@example.com")->isEmail()->isPass());
-        $this->assertFalse(Discipline::start("foo.bar.@example.com")->isEmail()->isPass());
-        $this->assertFalse(Discipline::start(".foo.bar@example.com")->isEmail()->isPass());
+        $this->assertFalse(Discipline::start("foo..bar@example.com")->email()->isPass());
+        $this->assertFalse(Discipline::start("foo.bar.@example.com")->email()->isPass());
+        $this->assertFalse(Discipline::start(".foo.bar@example.com")->email()->isPass());
     }
 
-    public function testIsUrl()
+    public function testUrl()
     {
-        $this->assertTrue(Discipline::start("http://example.com")->isUrl()->isPass());
-        $this->assertTrue(Discipline::start("https://example.com/")->isUrl()->isPass());
-        $this->assertTrue(Discipline::start("http://example.com/path/to")->isUrl()->isPass());
-        $this->assertTrue(Discipline::start("http://example.com:8080")->isUrl()->isPass());
-        $this->assertTrue(Discipline::start("http://user:pass@example.com")->isUrl()->isPass());
-        $this->assertTrue(Discipline::start("http://localhost")->isUrl()->isPass());
-        $this->assertTrue(Discipline::start("http://192.168.0.1/")->isUrl()->isPass());
-        $this->assertTrue(Discipline::start("http://10.0.0.0/")->isUrl()->isPass());
-        $this->assertTrue(Discipline::start("ftp://example.com")->isUrl()->isPass());
-        $this->assertTrue(Discipline::start("mailto:foo@example.com")->isUrl()->isPass());
-        $this->assertTrue(Discipline::start("http://example.com?q=%2F&page=1")->isUrl()->isPass());
-        $this->assertTrue(Discipline::start("http://example.com/path/to$-_.+!*'(),")->isUrl()->isPass());
+        $this->assertTrue(Discipline::start("http://example.com")->url()->isPass());
+        $this->assertTrue(Discipline::start("https://example.com/")->url()->isPass());
+        $this->assertTrue(Discipline::start("http://example.com/path/to")->url()->isPass());
+        $this->assertTrue(Discipline::start("http://example.com:8080")->url()->isPass());
+        $this->assertTrue(Discipline::start("http://user:pass@example.com")->url()->isPass());
+        $this->assertTrue(Discipline::start("http://localhost")->url()->isPass());
+        $this->assertTrue(Discipline::start("http://192.168.0.1/")->url()->isPass());
+        $this->assertTrue(Discipline::start("http://10.0.0.0/")->url()->isPass());
+        $this->assertTrue(Discipline::start("ftp://example.com")->url()->isPass());
+        $this->assertTrue(Discipline::start("mailto:foo@example.com")->url()->isPass());
+        $this->assertTrue(Discipline::start("http://example.com?q=%2F&page=1")->url()->isPass());
+        $this->assertTrue(Discipline::start("http://example.com/path/to$-_.+!*'(),")->url()->isPass());
 
-        $this->assertFalse(Discipline::start("example.com")->isUrl()->isPass());
-        $this->assertFalse(Discipline::start("http://example.")->isUrl()->isPass());
-        $this->assertFalse(Discipline::start("http//example.com")->isUrl()->isPass());
-        $this->assertFalse(Discipline::start("http:/example.com")->isUrl()->isPass());
-        $this->assertFalse(Discipline::start("http:example.com")->isUrl()->isPass());
-        $this->assertFalse(Discipline::start("http://.com")->isUrl()->isPass());
+        $this->assertFalse(Discipline::start("example.com")->url()->isPass());
+        $this->assertFalse(Discipline::start("http://example.")->url()->isPass());
+        $this->assertFalse(Discipline::start("http//example.com")->url()->isPass());
+        $this->assertFalse(Discipline::start("http:/example.com")->url()->isPass());
+        $this->assertFalse(Discipline::start("http:example.com")->url()->isPass());
+        $this->assertFalse(Discipline::start("http://.com")->url()->isPass());
     }
 
-    public function testIsIPv4()
+    public function testIpv4()
     {
-        $this->assertTrue(Discipline::start("127.0.0.1")->isIPv4()->isPass());
-        $this->assertTrue(Discipline::start("1.2.3.4")->isIPv4()->isPass());
-        $this->assertTrue(Discipline::start("0.0.0.0")->isIPv4()->isPass());
-        $this->assertTrue(Discipline::start("255.255.255.255")->isIPv4()->isPass());
+        $this->assertTrue(Discipline::start("127.0.0.1")->ipv4()->isPass());
+        $this->assertTrue(Discipline::start("1.2.3.4")->ipv4()->isPass());
+        $this->assertTrue(Discipline::start("0.0.0.0")->ipv4()->isPass());
+        $this->assertTrue(Discipline::start("255.255.255.255")->ipv4()->isPass());
 
-        $this->assertFalse(Discipline::start("1.2.3.4.5")->isIPv4()->isPass());
-        $this->assertFalse(Discipline::start("1.2.3.a")->isIPv4()->isPass());
-        $this->assertFalse(Discipline::start("256.0.0.0")->isIPv4()->isPass());
-        $this->assertFalse(Discipline::start("0.256.0.0")->isIPv4()->isPass());
-        $this->assertFalse(Discipline::start("0.0.256.0")->isIPv4()->isPass());
-        $this->assertFalse(Discipline::start("0.0.0.256")->isIPv4()->isPass());
+        $this->assertFalse(Discipline::start("1.2.3.4.5")->ipv4()->isPass());
+        $this->assertFalse(Discipline::start("1.2.3.a")->ipv4()->isPass());
+        $this->assertFalse(Discipline::start("256.0.0.0")->ipv4()->isPass());
+        $this->assertFalse(Discipline::start("0.256.0.0")->ipv4()->isPass());
+        $this->assertFalse(Discipline::start("0.0.256.0")->ipv4()->isPass());
+        $this->assertFalse(Discipline::start("0.0.0.256")->ipv4()->isPass());
 
-        $this->assertFalse(Discipline::start("::")->isIPv4()->isPass());
-        $this->assertFalse(Discipline::start("::1")->isIPv4()->isPass());
+        $this->assertFalse(Discipline::start("::")->ipv4()->isPass());
+        $this->assertFalse(Discipline::start("::1")->ipv4()->isPass());
 
-        $this->assertFalse(Discipline::start("2001:db8:bd05:1d2:288a:1fc0:1:10ee")->isIPv4()->isPass());
-        $this->assertFalse(Discipline::start("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")->isIPv4()->isPass());
-        $this->assertFalse(Discipline::start("2001:db8::1234:0:0:9abc")->isIPv4()->isPass());
-        $this->assertFalse(Discipline::start("2001:db8::9abc")->isIPv4()->isPass());
+        $this->assertFalse(Discipline::start("2001:db8:bd05:1d2:288a:1fc0:1:10ee")->ipv4()->isPass());
+        $this->assertFalse(Discipline::start("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")->ipv4()->isPass());
+        $this->assertFalse(Discipline::start("2001:db8::1234:0:0:9abc")->ipv4()->isPass());
+        $this->assertFalse(Discipline::start("2001:db8::9abc")->ipv4()->isPass());
     }
 
-    public function testIsIPv6()
+    public function testIpv6()
     {
-        $this->assertTrue(Discipline::start("::")->isIPv6()->isPass());
-        $this->assertTrue(Discipline::start("::f")->isIPv6()->isPass());
+        $this->assertTrue(Discipline::start("::")->ipv6()->isPass());
+        $this->assertTrue(Discipline::start("::f")->ipv6()->isPass());
 
-        $this->assertTrue(Discipline::start("2001:db8:bd05:1d2:288a:1fc0:1:10ee")->isIPv6()->isPass());
-        $this->assertTrue(Discipline::start("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")->isIPv6()->isPass());
-        $this->assertTrue(Discipline::start("2001:db8::1234:0:0:9abc")->isIPv6()->isPass());
-        $this->assertTrue(Discipline::start("2001:db8::9abc")->isIPv6()->isPass());
+        $this->assertTrue(Discipline::start("2001:db8:bd05:1d2:288a:1fc0:1:10ee")->ipv6()->isPass());
+        $this->assertTrue(Discipline::start("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")->ipv6()->isPass());
+        $this->assertTrue(Discipline::start("2001:db8::1234:0:0:9abc")->ipv6()->isPass());
+        $this->assertTrue(Discipline::start("2001:db8::9abc")->ipv6()->isPass());
 
-        $this->assertFalse(Discipline::start("::g")->isIPv6()->isPass());
-        $this->assertFalse(Discipline::start("1234:5::xyz")->isIPv6()->isPass());
+        $this->assertFalse(Discipline::start("::g")->ipv6()->isPass());
+        $this->assertFalse(Discipline::start("1234:5::xyz")->ipv6()->isPass());
 
-        $this->assertFalse(Discipline::start("127.0.0.1")->isIPv6()->isPass());
+        $this->assertFalse(Discipline::start("127.0.0.1")->ipv6()->isPass());
     }
 
 
-    public function testIsIP()
+    public function testIp()
     {
-        $this->assertTrue(Discipline::start("127.0.0.1")->isIP()->isPass());
-        $this->assertTrue(Discipline::start("1.2.3.4")->isIP()->isPass());
-        $this->assertTrue(Discipline::start("0.0.0.0")->isIP()->isPass());
-        $this->assertTrue(Discipline::start("255.255.255.255")->isIP()->isPass());
+        $this->assertTrue(Discipline::start("127.0.0.1")->ip()->isPass());
+        $this->assertTrue(Discipline::start("1.2.3.4")->ip()->isPass());
+        $this->assertTrue(Discipline::start("0.0.0.0")->ip()->isPass());
+        $this->assertTrue(Discipline::start("255.255.255.255")->ip()->isPass());
 
-        $this->assertTrue(Discipline::start("::")->isIP()->isPass());
-        $this->assertTrue(Discipline::start("::1")->isIP()->isPass());
-        $this->assertTrue(Discipline::start("2001:db8:bd05:1d2:288a:1fc0:1:10ee")->isIP()->isPass());
-        $this->assertTrue(Discipline::start("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")->isIP()->isPass());
-        $this->assertTrue(Discipline::start("2001:db8::1234:0:0:9abc")->isIP()->isPass());
-        $this->assertTrue(Discipline::start("2001:db8::9abc")->isIP()->isPass());
+        $this->assertTrue(Discipline::start("::")->ip()->isPass());
+        $this->assertTrue(Discipline::start("::1")->ip()->isPass());
+        $this->assertTrue(Discipline::start("2001:db8:bd05:1d2:288a:1fc0:1:10ee")->ip()->isPass());
+        $this->assertTrue(Discipline::start("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")->ip()->isPass());
+        $this->assertTrue(Discipline::start("2001:db8::1234:0:0:9abc")->ip()->isPass());
+        $this->assertTrue(Discipline::start("2001:db8::9abc")->ip()->isPass());
 
-        $this->assertFalse(Discipline::start("1.2.3.4.5")->isIP()->isPass());
-        $this->assertFalse(Discipline::start("1.2.3.a")->isIP()->isPass());
-        $this->assertFalse(Discipline::start("256.0.0.0")->isIP()->isPass());
-        $this->assertFalse(Discipline::start("0.256.0.0")->isIP()->isPass());
-        $this->assertFalse(Discipline::start("0.0.256.0")->isIP()->isPass());
-        $this->assertFalse(Discipline::start("0.0.0.256")->isIP()->isPass());
+        $this->assertFalse(Discipline::start("1.2.3.4.5")->ip()->isPass());
+        $this->assertFalse(Discipline::start("1.2.3.a")->ip()->isPass());
+        $this->assertFalse(Discipline::start("256.0.0.0")->ip()->isPass());
+        $this->assertFalse(Discipline::start("0.256.0.0")->ip()->isPass());
+        $this->assertFalse(Discipline::start("0.0.256.0")->ip()->isPass());
+        $this->assertFalse(Discipline::start("0.0.0.256")->ip()->isPass());
 
-        $this->assertFalse(Discipline::start("::g")->isIP()->isPass());
-        $this->assertFalse(Discipline::start("1234:5::xyz")->isIP()->isPass());
+        $this->assertFalse(Discipline::start("::g")->ip()->isPass());
+        $this->assertFalse(Discipline::start("1234:5::xyz")->ip()->isPass());
     }
 }

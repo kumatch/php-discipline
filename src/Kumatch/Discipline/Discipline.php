@@ -62,7 +62,7 @@ class Discipline
      * @param bool $strict
      * @return $this
      */
-    public function isInt($strict = true)
+    public function int($strict = true)
     {
         if (is_int($this->value)) {
             return $this;
@@ -93,9 +93,9 @@ class Discipline
      * @param bool $strict
      * @return $this
      */
-    public function isInteger($strict = true)
+    public function integer($strict = true)
     {
-        return $this->isInt($strict);
+        return $this->int($strict);
     }
 
 
@@ -103,7 +103,7 @@ class Discipline
      * @param bool $strict
      * @return $this
      */
-    public function isFloat($strict = true)
+    public function float($strict = true)
     {
         if (is_float($this->value)) {
             return $this;
@@ -137,16 +137,16 @@ class Discipline
      *
      * @return $this
      */
-    public function isDecimal()
+    public function decimal()
     {
-        return $this->isFloat();
+        return $this->float();
     }
 
 
     /**
      * @return $this
      */
-    public function isAlpha()
+    public function alpha()
     {
         if (!is_scalar($this->value)) {
             return $this->fail();
@@ -168,16 +168,16 @@ class Discipline
      *
      * @return $this
      */
-    public function isAlphabet()
+    public function alphabet()
     {
-        return $this->isAlpha();
+        return $this->alpha();
     }
 
 
     /**
      * @return $this
      */
-    public function isAlphaNumeric()
+    public function alphaNumeric()
     {
         if (!is_scalar($this->value)) {
             return $this->fail();
@@ -197,7 +197,7 @@ class Discipline
     /**
      * @return $this
      */
-    public function isNumeric()
+    public function numeric()
     {
         if (!is_scalar($this->value)) {
             return $this->fail();
@@ -217,7 +217,7 @@ class Discipline
     /**
      * @return $this
      */
-    public function isLowerCase()
+    public function lowerCase()
     {
         if (!is_scalar($this->value)) {
             return $this->fail();
@@ -241,7 +241,7 @@ class Discipline
     /**
      * @return $this
      */
-    public function isUpperCase()
+    public function upperCase()
     {
         if (!is_scalar($this->value)) {
             return $this->fail();
@@ -267,7 +267,7 @@ class Discipline
     /**
      * @return $this
      */
-    public function isNull()
+    public function null()
     {
         if (!is_null($this->value)) {
             return $this->fail();
@@ -291,9 +291,9 @@ class Discipline
     /**
      * @return $this
      */
-    public function isEmpty()
+    public function blank()
     {
-        if (is_null($this->value) || $this->value === '') {
+        if ($this->value === '') {
             return $this;
         } else {
             return $this->fail();
@@ -303,9 +303,9 @@ class Discipline
     /**
      * @return $this
      */
-    public function notEmpty()
+    public function notBlank()
     {
-        if (is_null($this->value) || $this->value === '') {
+        if ($this->value === '') {
             return $this->fail();
         } else {
             return $this;
@@ -487,7 +487,7 @@ class Discipline
     /**
      * @return $this
      */
-    public function isEmail()
+    public function email()
     {
         if (!is_scalar($this->value)) {
             return $this->fail();
@@ -503,7 +503,7 @@ class Discipline
     /**
      * @return $this
      */
-    public function isUrl()
+    public function url()
     {
         if (!is_scalar($this->value)) {
             return $this->fail();
@@ -519,7 +519,7 @@ class Discipline
     /**
      * @return $this
      */
-    public function isIPv4()
+    public function ipv4()
     {
         if (!is_scalar($this->value)) {
             return $this->fail();
@@ -535,7 +535,7 @@ class Discipline
     /**
      * @return $this
      */
-    public function isIPv6()
+    public function ipv6()
     {
         if (!is_scalar($this->value)) {
             return $this->fail();
@@ -551,7 +551,7 @@ class Discipline
     /**
      * @return $this
      */
-    public function isIP()
+    public function ip()
     {
         if (!is_scalar($this->value)) {
             return $this->fail();
