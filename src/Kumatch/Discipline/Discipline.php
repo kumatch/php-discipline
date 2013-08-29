@@ -217,6 +217,26 @@ class Discipline
     /**
      * @return $this
      */
+    public function ascii()
+    {
+        if (!is_scalar($this->value)) {
+            return $this->fail();
+        }
+
+        if (is_bool($this->value)) {
+            return $this->fail();
+        }
+
+        if (!preg_match('/^[\!-\~]+$/i', $this->value)) {
+            return $this->fail();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
     public function lowerCase()
     {
         if (!is_scalar($this->value)) {

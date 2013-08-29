@@ -179,10 +179,36 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse(Discipline::start('Its OK')->numeric()->isPass());
         $this->assertFalse(Discipline::start('33-4')->numeric()->isPass());
+        $this->assertFalse(Discipline::start('日本語')->numeric()->isPass());
         $this->assertFalse(Discipline::start(true)->numeric()->isPass());
         $this->assertFalse(Discipline::start(null)->numeric()->isPass());
         $this->assertFalse(Discipline::start('')->numeric()->isPass());
         $this->assertFalse(Discipline::start(array('NG'))->numeric()->isPass());
+    }
+
+    public function testAscii()
+    {
+        $this->assertTrue(Discipline::start('123')->ascii()->isPass());
+        $this->assertTrue(Discipline::start(42)->ascii()->isPass());
+        $this->assertTrue(Discipline::start('-123')->ascii()->isPass());
+        $this->assertTrue(Discipline::start(-42)->ascii()->isPass());
+
+        $this->assertTrue(Discipline::start('OK')->ascii()->isPass());
+        $this->assertTrue(Discipline::start('pass')->ascii()->isPass());
+        $this->assertTrue(Discipline::start('Fail')->ascii()->isPass());
+        $this->assertTrue(Discipline::start('success123')->ascii()->isPass());
+
+        $this->assertTrue(Discipline::start('33-4')->ascii()->isPass());
+        $this->assertTrue(Discipline::start('Go!')->ascii()->isPass());
+        $this->assertTrue(Discipline::start('@kumatch')->ascii()->isPass());
+        $this->assertTrue(Discipline::start('"password":"!#$%&\'\"()-=^|~/_<>,."[]{}')->ascii()->isPass());
+
+        $this->assertFalse(Discipline::start('Its OK')->ascii()->isPass());
+        $this->assertFalse(Discipline::start('日本語')->ascii()->isPass());
+        $this->assertFalse(Discipline::start(true)->ascii()->isPass());
+        $this->assertFalse(Discipline::start(null)->ascii()->isPass());
+        $this->assertFalse(Discipline::start('')->ascii()->isPass());
+        $this->assertFalse(Discipline::start(array('NG'))->ascii()->isPass());
     }
 
     public function testLowerCase()
