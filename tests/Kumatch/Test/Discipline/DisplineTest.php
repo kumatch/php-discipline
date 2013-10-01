@@ -4,6 +4,18 @@ namespace Kumatch\Test\Discipline;
 
 use Kumatch\Discipline\Discipline;
 
+class DisciplineTestRunChecker
+{
+    public function invoke($value)
+    {
+        if (!is_numeric($value) || $value < 0 || $value > 10) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
+
 class DisciplineTest extends \PHPUnit_Framework_TestCase
 {
     protected function setUp()
@@ -596,5 +608,22 @@ class DisciplineTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse(Discipline::start("::g")->ip()->isPass());
         $this->assertFalse(Discipline::start("1234:5::xyz")->ip()->isPass());
+    }
+
+    public function testRunSpecificFunction()
+    {
+        $testCheckerClass = new DisciplineTestRunChecker();
+
+        $checkerFunction = function ($value) use ($testCheckerClass) {
+            return $testCheckerClass->invoke($value);
+        };
+
+        $this->assertTrue(Discipline::start(1)->run(array($testCheckerClass, 'invoke'))->isPass());
+        $this->assertTrue(Discipline::start(2)->run(array('\Kumatch\Test\Discipline\DisciplineTestRunChecker', 'invoke'))->isPass());
+        $this->assertTrue(Discipline::start(3)->run($checkerFunction)->isPass());
+
+        $this->assertFalse(Discipline::start(null)->run(array($testCheckerClass, 'invoke'))->isPass());
+        $this->assertFalse(Discipline::start("foo")->run(array('\Kumatch\Test\Discipline\DisciplineTestRunChecker', 'invoke'))->isPass());
+        $this->assertFalse(Discipline::start(-1)->run($checkerFunction)->isPass());
     }
 }

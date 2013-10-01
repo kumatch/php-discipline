@@ -2,6 +2,8 @@
 
 namespace Kumatch\Discipline;
 
+use Kumatch\Discipline\Exception;
+
 class Discipline
 {
 
@@ -584,4 +586,21 @@ class Discipline
         }
     }
 
+    /**
+     * @param callable $checker
+     * @throws Exception
+     * @return $this
+     */
+    public function run($checker)
+    {
+        if (!is_callable($checker)) {
+            throw new Exception('set a callable variable to Discipline::run()');
+        }
+
+        if (call_user_func_array($checker, array($this->value))) {
+            return $this;
+        } else {
+            return $this->fail();
+        }
+    }
 }
