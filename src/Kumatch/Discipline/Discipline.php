@@ -2,9 +2,11 @@
 
 namespace Kumatch\Discipline;
 
+use Kumatch\Discipline\RuleInterface;
+use Kumatch\Discipline\Definition;
 use Kumatch\Discipline\Exception;
 
-class Discipline
+class Discipline implements RuleInterface
 {
 
     protected $value;
@@ -20,6 +22,16 @@ class Discipline
     {
         return new static($value, $message);
     }
+
+    /**
+     * @param string $message
+     * @return Definition
+     */
+    static public function define($message = 'failed')
+    {
+        return new Definition($message);
+    }
+
 
     /**
      * @param $value
@@ -137,11 +149,12 @@ class Discipline
     /**
      * alias isFloat()
      *
+     * @param bool $strict
      * @return $this
      */
-    public function decimal()
+    public function decimal($strict = true)
     {
-        return $this->float();
+        return $this->float($strict);
     }
 
 
